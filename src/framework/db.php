@@ -19,7 +19,7 @@ class db
     protected bool $query_closed = TRUE;
     public int $query_count = 0;
 
-    public function __construct($dbhost = 'mysql', $dbuser = 'rootuser', $dbpass = 'password', $dbname = 'panda_news', $charset = 'utf8')
+    public function __construct($dbhost = 'mysql-news', $dbuser = 'rootuser', $dbpass = 'password', $dbname = 'panda_news', $charset = 'utf8')
     {
         $this->connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
         if ($this->connection->connect_error) {

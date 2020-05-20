@@ -9,7 +9,7 @@ services:
       - backend
     volumes:
       - ${PROJECT_ROOT}/:/var/www/html/
-    container_name: php
+    container_name: php-news
   apache:
     build:
       context: 'dockerfiles/apache/'
@@ -25,7 +25,7 @@ services:
       - "80:80"
     volumes:
       - ${PROJECT_ROOT}/:/var/www/html/
-    container_name: apache
+    container_name: apache-news
   mysql:
     image: mysql:${MYSQL_VERSION:-latest}
     restart: always
@@ -42,7 +42,7 @@ services:
       MYSQL_DATABASE: "${DB_NAME}"
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
-    container_name: mysql
+    container_name: mysql-news
 networks:
   frontend:
   backend:
