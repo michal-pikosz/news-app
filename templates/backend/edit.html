@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1 class="mt-4">News: {{ news.name }}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">News</li>
+    <li class="breadcrumb-item active">{{ news.id | e }}</li>
+    <li class="breadcrumb-item active">edit</li>
+</ol>
+{% if news.name %}
+<a href="/admin/{{ news.id | e }}/edit" type="button" class="btn btn-primary">Modyfikuj</a>
+<a href="/admin/{{ news.id | e }}/delete" type="button" class="btn btn-secondary">Usuń</a>
+{% endif %}
+<div style="margin-top: 20px;">
+    {% if error is not empty %}
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            {% for single in error %}
+            <li>{{ single|e }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if news.name %}
+    <form action="/admin/{{ news.id | e }}" method="POST">
+        {% else %}
+        <form action="/admin/add" method="POST">
+            {% endif %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="insert name" value="{{ news.name | e}}">
+            </div>
+            <div class="form-group">
+                <label for="name">Description</label>
+                <textarea rows="5" class="form-control" name="description" id="description" placeholder="insert description">{{ news.description | e }}</textarea>
+            </div>
+            <div class="form-check">
+                <input {{ news.isactive ? "checked" : ""}} type="checkbox" name="isactive" class="form-check-input" id="isactive" value="{{ news.isactive ? 1 : 0}}">
+                <label class="form-check-label" for="isactive">Is active</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+    {% endblock %}

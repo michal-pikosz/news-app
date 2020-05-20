@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1 class="mt-4">News: {{ news.name }}</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">News</li>
+    <li class="breadcrumb-item active">{{ news.id | e }}</li>
+</ol>
+<a href="/admin/{{ news.id | e }}/edit" type="button" class="btn btn-primary">Modyfikuj</a>
+<a href="/admin/{{ news.id | e }}/delete" type="button" class="btn btn-secondary">Usuń</a>
+<div style="margin-top: 20px;">
+    <p>Description: {{ news.description | e }}</p>
+    <p>Is active: {{ news.isActive ? "true" : "false" }}</p>
+    <p>Created at: {{ news.createdAt | e }}</p>
+    <p>Updated at: {{ news.updatedAt | e }}</p>
+</div>
+{% endblock %}

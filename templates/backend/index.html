@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+
+{% block content %}
+<h1 class="mt-4">News</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">News</li>
+</ol>
+<a href="/admin/add" type="button" class="btn btn-primary mb-3">Add new</a>
+<div class="card mb-4">
+    <div class="card-header"><i class="fas fa-table mr-1"></i>All news</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Is active</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Is active</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th>Options</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for new in news %}
+                    <tr>
+                        <td>{{ new.name|e }}</td>
+                        <td>{{ new.is_active|e }}</td>
+                        <td>{{ new.created_at|e }}</td>
+                        <td>{{ new.updated_at|e }}</td>
+                        <td>
+                            <a href="/admin/{{ new.id|e }}"><i class="fas mr-3 fa-eye"></i></a>
+                            <a href="/admin/{{ new.id|e }}/edit"><i class="fas mr-3 fa-edit"></i></a>
+                            <a href="/admin/{{ new.id|e }}/delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
